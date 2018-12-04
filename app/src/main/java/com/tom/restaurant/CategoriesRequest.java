@@ -1,8 +1,8 @@
 package com.tom.restaurant;
 
-import android.app.Activity;
 import android.content.Context;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -36,14 +36,13 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "https://resto.mprog.nl/categories";
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, this, this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,this, this);
         queue.add(jsonObjectRequest);
     }
 
     @Override
     // send error back to activity where request came from
     public void onErrorResponse(VolleyError error) {
-        System.out.println("-----------------------------------------------------You got an ErrorResponse!!-----------------------------------------");
         activity.gotCategoriesError(error.getMessage());
     }
 
@@ -58,7 +57,6 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
             for(int i=0; i < responseArray.length(); i++) {
                 categories.add(responseArray.optString(i));
             }
-        System.out.println(categories);
         }
 
         catch (Exception e) {
