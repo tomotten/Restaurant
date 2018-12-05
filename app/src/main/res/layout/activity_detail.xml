@@ -19,8 +19,11 @@
     <ImageView
         android:id="@+id/itemImgView"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="180dp"
         android:layout_margin="6dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:scaleType="fitXY"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView

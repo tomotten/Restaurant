@@ -17,6 +17,8 @@ public class MenuActivity extends AppCompatActivity implements MenuItemsRequest.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        // get selected category and make request for menuItems in the category
         Intent intent = getIntent();
         String category = intent.getStringExtra("category");
         setTitle("Restaurant : "+category);
@@ -27,6 +29,8 @@ public class MenuActivity extends AppCompatActivity implements MenuItemsRequest.
     @Override
     public void gotMenuItems(ArrayList<MenuItem> menu) {
         ListView menuList = findViewById(R.id.menuListView);
+
+        // set adapter to show our menuItmes in listview as specified in menu_item_row, also set listener
         MenuItemAdapter adapter = new MenuItemAdapter(this, R.layout.menu_item_row, menu);
         menuList.setAdapter(adapter);
         menuList.setOnItemClickListener(new OnMenuClickListener());
@@ -34,12 +38,14 @@ public class MenuActivity extends AppCompatActivity implements MenuItemsRequest.
 
     @Override
     public void gotMenuError(String message) {
+        // if request returned error show error message
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     public class OnMenuClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            // get selected menuItem and pass to DetailActivity with intent
             MenuItem item = (MenuItem) parent.getItemAtPosition(position);
             Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
             intent.putExtra("menuItem", item);

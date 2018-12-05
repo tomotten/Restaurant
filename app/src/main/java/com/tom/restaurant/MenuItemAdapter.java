@@ -22,6 +22,8 @@ public class MenuItemAdapter extends ArrayAdapter<MenuItem>{
 
     public MenuItemAdapter(@NonNull Context context, int resource, @NonNull ArrayList<MenuItem> MenuItems){
         super(context, resource, MenuItems);
+
+        // save arraylist with MenuItems
         this.menu = MenuItems;
     }
 
@@ -35,7 +37,7 @@ public class MenuItemAdapter extends ArrayAdapter<MenuItem>{
         TextView price = convertView.findViewById(R.id.priceView);
         ImageView img = convertView.findViewById(R.id.itemImageView);
 
-        // set all views
+        // set all views we want to display in listView
         name.setText(currItem.getName());
         price.setText("€"+String.valueOf((int) currItem.getPrice())+",-");
         Picasso.with(getContext()).load(currItem.getImageUrl()).into(img);
