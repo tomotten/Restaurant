@@ -19,7 +19,7 @@
     <ImageView
         android:id="@+id/itemImgView"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="160dp"
         android:layout_margin="6dp"
         tools:srcCompat="@tools:sample/avatars" />
 
